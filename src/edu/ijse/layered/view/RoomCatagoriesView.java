@@ -4,16 +4,25 @@
  */
 package edu.ijse.layered.view;
 
+import edu.ijse.layered.controller.CategoryController;
+import edu.ijse.layered.dto.CategoryDto;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 /**
  *
  * @author Home
  */
 public class RoomCatagoriesView extends javax.swing.JFrame {
+    
+    private CategoryController categoryController;
+    
 
     /**
      * Creates new form RoomCatagoriesView
      */
     public RoomCatagoriesView() {
+        categoryController = new CategoryController();
         initComponents();
     }
 
@@ -136,7 +145,7 @@ public class RoomCatagoriesView extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
-        // TODO add your handling code here:
+        addRoomCategory();
     }//GEN-LAST:event_btnAddActionPerformed
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
@@ -194,4 +203,17 @@ public class RoomCatagoriesView extends javax.swing.JFrame {
     private javax.swing.JTextField txtCategoryId;
     private javax.swing.JTextField txtCategoryName;
     // End of variables declaration//GEN-END:variables
+
+    private void addRoomCategory() {
+        try {
+            CategoryDto categoryDto = new CategoryDto(Integer.parseInt(txtCategoryId.getText()),
+                    txtCategoryName.getText());
+            
+            String resp = categoryController.add(categoryDto);
+            JOptionPane.showMessageDialog(this, resp);
+        } catch (Exception ex) {
+            Logger.getLogger(RoomCatagoriesView.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(this, ex.getMessage());
+        }
+    }
 }
