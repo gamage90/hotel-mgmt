@@ -4,10 +4,13 @@
  */
 package edu.ijse.layered.dao.custom;
 
+import edu.ijse.layered.dao.CrudDao;
+import edu.ijse.layered.entity.CategoryEntity;
+
 /**
  *
  * @author Home
  */
-public interface CategoryDao {
+public interface CategoryDao extends CrudDao<CategoryEntity, String> {
     
 }
