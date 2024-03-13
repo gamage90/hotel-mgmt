@@ -17,7 +17,7 @@ public class CategoryController {
     private CategoryService categoryService = (CategoryService) ServiceFactory.getInstance().getService(ServiceFactory.ServiceType.RESERVATION);
 
     public String add(CategoryDto categoryDto)throws Exception{
-            return null;
+            return categoryService.addCategory(categoryDto);
     }
     
 }

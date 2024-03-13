@@ -5,6 +5,7 @@
 package edu.ijse.layered.service.custom.impl;
 
 import edu.ijse.layered.dto.CategoryDto;
+import edu.ijse.layered.entity.CategoryEntity;
 import edu.ijse.layered.service.custom.CategoryService;
 import java.util.List;
 
@@ -15,7 +16,9 @@ import java.util.List;
 public class CategoryServiceImpl implements CategoryService {
 
     @Override
-    public String addCategory(CategoryDto categoryDto) throws Exception {
+    public String addCategory(CategoryDto dto) throws Exception {
+        CategoryEntity categoryEntity = new CategoryEntity(dto.getCategoryID(),
+                dto.getCategoryName());
         return null;
     }
 
