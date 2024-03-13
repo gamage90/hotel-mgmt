@@ -4,6 +4,8 @@
  */
 package edu.ijse.layered.service;
 
+import edu.ijse.layered.service.custom.impl.CategoryServiceImpl;
+
 /**
  *
  * @author Home
@@ -18,6 +20,27 @@ public class ServiceFactory {
             serviceFactory = new ServiceFactory();
         }
         return serviceFactory;
+    }
+    
+    public SuperService getService(ServiceType serviceType){
+
+        switch (serviceType) {
+            case CATEGORY:
+                return new CategoryServiceImpl();
+            case CUSTOMER:
+                return null;
+            case ROOMS:
+                return null;
+            case RESERVATION:
+                return null;
+            default:
+                return null;
+        }
+
+    }
+
+    public enum ServiceType{
+        CATEGORY, CUSTOMER, ROOMS, RESERVATION
     }
     
 }

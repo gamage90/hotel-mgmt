@@ -5,12 +5,16 @@
 package edu.ijse.layered.controller;
 
 import edu.ijse.layered.dto.CategoryDto;
+import edu.ijse.layered.service.ServiceFactory;
+import edu.ijse.layered.service.custom.CategoryService;
 
 /**
  *
  * @author Home
  */
 public class CategoryController {
+    
+    private CategoryService categoryService = (CategoryService) ServiceFactory.getInstance().getService(ServiceFactory.ServiceType.RESERVATION);
 
     public String add(CategoryDto categoryDto)throws Exception{
             return null;
