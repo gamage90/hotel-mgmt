@@ -4,6 +4,7 @@
  */
 package edu.ijse.layered.dao.custom.impl;
 
+import edu.ijse.layered.dao.CrudUtil;
 import edu.ijse.layered.dao.custom.CategoryDao;
 import edu.ijse.layered.entity.CategoryEntity;
 import java.util.ArrayList;
@@ -16,7 +17,9 @@ public class CategoryDaoImpl implements CategoryDao {
 
     @Override
     public boolean add(CategoryEntity t) throws Exception {
-        return false;
+        return CrudUtil.executeUpdate("INSERT INTO ROOMCATEGORIES VALUES(?,?)", 
+                t.getCategoryID(),
+                t.getCategoryName());
     }
 
     @Override

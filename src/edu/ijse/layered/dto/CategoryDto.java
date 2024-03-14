@@ -10,15 +10,10 @@ package edu.ijse.layered.dto;
  */
 public class CategoryDto {
     
-    private Integer categoryID;
+     private Integer categoryID;
     private String categoryName;
 
-    public CategoryDto() {
-    }
-
-    public CategoryDto(Integer categoryID, String categoryName) {
-        this.categoryID = categoryID;
-        this.categoryName = categoryName;
+    public CategoryDto(int parseInt, String text) {
     }
 
     /**
@@ -53,7 +48,8 @@ public class CategoryDto {
     public String toString() {
         return "CategoryDto{" + "categoryID=" + categoryID + ", categoryName=" + categoryName + '}';
     }
-
+    
+    
     
     
 }

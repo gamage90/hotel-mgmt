@@ -4,6 +4,8 @@
  */
 package edu.ijse.layered.dao;
 
+import edu.ijse.layered.dao.custom.impl.CategoryDaoImpl;
+
 /**
  *
  * @author Home
@@ -25,7 +27,8 @@ public class DaoFactory {
     public SuperDao getDao(DaoTypes type){
     
         switch (type) {
-            case CATEGORY:
+            case ROOMCATEGORIES:
+                return new CategoryDaoImpl();
 
             default:
                 return null;
@@ -33,6 +36,6 @@ public class DaoFactory {
     }
     
      public enum DaoTypes{
-        CATEGORY
+        ROOMCATEGORIES
     }
 }

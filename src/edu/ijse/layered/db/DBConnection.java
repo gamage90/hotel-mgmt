@@ -36,7 +36,7 @@ public class DBConnection {
         return dBConnection;
     }
 
-    public Connection getCOnnection() {
+    public Connection getConnection() {
         return connection;
     }
     

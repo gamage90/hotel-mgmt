@@ -25,7 +25,7 @@ public class ServiceFactory {
     public SuperService getService(ServiceType serviceType){
 
         switch (serviceType) {
-            case CATEGORY:
+            case ROOMCATEGORIES:
                 return new CategoryServiceImpl();
             case CUSTOMER:
                 return null;
@@ -40,7 +40,7 @@ public class ServiceFactory {
     }
 
     public enum ServiceType{
-        CATEGORY, CUSTOMER, ROOMS, RESERVATION
+        ROOMCATEGORIES, CUSTOMER, ROOMS, RESERVATION
     }
     
 }

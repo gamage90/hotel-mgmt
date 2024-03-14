@@ -4,6 +4,8 @@
  */
 package edu.ijse.layered.service.custom.impl;
 
+import edu.ijse.layered.dao.DaoFactory;
+import edu.ijse.layered.dao.custom.CategoryDao;
 import edu.ijse.layered.dto.CategoryDto;
 import edu.ijse.layered.entity.CategoryEntity;
 import edu.ijse.layered.service.custom.CategoryService;
@@ -15,11 +17,17 @@ import java.util.List;
  */
 public class CategoryServiceImpl implements CategoryService {
 
+    private CategoryDao categoryDao = (CategoryDao) DaoFactory.getInstance().getDao(DaoFactory.DaoTypes.ROOMCATEGORIES);
+
     @Override
     public String addCategory(CategoryDto dto) throws Exception {
         CategoryEntity categoryEntity = new CategoryEntity(dto.getCategoryID(),
                 dto.getCategoryName());
-        return null;
+        if (categoryDao.add(categoryEntity)) {
+            return "Successfully Saved";
+        } else {
+            return "Fail";
+        }
     }
 
     @Override
