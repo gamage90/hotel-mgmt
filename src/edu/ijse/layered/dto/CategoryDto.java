@@ -12,9 +12,17 @@ public class CategoryDto {
     
      private Integer categoryID;
     private String categoryName;
-
-    public CategoryDto(int parseInt, String text) {
+    
+    public CategoryDto() {
     }
+
+    public CategoryDto(Integer categoryID, String categoryName) {
+        this.categoryID = categoryID;
+        this.categoryName = categoryName;
+    }
+
+     // public CategoryDto(int parseInt, String text) {
+   // }
 
     /**
      * @return the categoryID

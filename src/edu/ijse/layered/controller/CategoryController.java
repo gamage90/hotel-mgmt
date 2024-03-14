@@ -14,7 +14,7 @@ import edu.ijse.layered.service.custom.CategoryService;
  */
 public class CategoryController {
     
-    private CategoryService categoryService = (CategoryService) ServiceFactory.getInstance().getService(ServiceFactory.ServiceType.RESERVATION);
+    private CategoryService categoryService = (CategoryService) ServiceFactory.getInstance().getService(ServiceFactory.ServiceType.ROOMCATEGORIES);
 
     public String add(CategoryDto categoryDto)throws Exception{
             return categoryService.addCategory(categoryDto);
