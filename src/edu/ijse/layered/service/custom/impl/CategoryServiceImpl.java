@@ -9,6 +9,7 @@ import edu.ijse.layered.dao.custom.CategoryDao;
 import edu.ijse.layered.dto.CategoryDto;
 import edu.ijse.layered.entity.CategoryEntity;
 import edu.ijse.layered.service.custom.CategoryService;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -32,22 +33,42 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Override
     public String updateCategory(CategoryDto categoryDto) throws Exception {
-        return null;
+        CategoryEntity categoryEntity = new CategoryEntity(categoryDto.getCategoryID(),
+                categoryDto.getCategoryName());
+        if (categoryDao.update(categoryEntity)) {
+            return "Successfully Updated";
+        } else {
+            return "Fail";
+        }
     }
 
     @Override
     public String deleteCategory(String categoryID) throws Exception {
-        return null;
+        if (categoryDao.delete(categoryID)) {
+            return "Successfully Deleted";
+        } else {
+            return "Fail";
+        }
     }
 
     @Override
     public CategoryDto getCategory(String categoryID) throws Exception {
-        return null;
+        CategoryEntity categoryEntity = categoryDao.get(categoryID);
+         return new CategoryDto(categoryEntity.getCategoryID(),
+                 categoryEntity.getCategoryName());
     }
 
     @Override
     public List<CategoryDto> getAll() throws Exception {
-        return null;
+        ArrayList<CategoryEntity> categoryEntities = categoryDao.getAll();
+        
+        List<CategoryDto> categoryDtos = new ArrayList<>();
+        
+        for (CategoryEntity categoryEntity : categoryEntities) {
+            categoryDtos.add(new CategoryDto(categoryEntity.getCategoryID(),
+                 categoryEntity.getCategoryName()));
+        }
+        return categoryDtos;
     }
 
 }
