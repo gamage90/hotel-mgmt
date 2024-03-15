@@ -6,17 +6,19 @@ package edu.ijse.layered.view;
 
 import edu.ijse.layered.controller.CategoryController;
 import edu.ijse.layered.dto.CategoryDto;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Home
  */
 public class RoomCatagoriesView extends javax.swing.JFrame {
-    
+
     private CategoryController categoryController;
-    
 
     /**
      * Creates new form RoomCatagoriesView
@@ -24,6 +26,8 @@ public class RoomCatagoriesView extends javax.swing.JFrame {
     public RoomCatagoriesView() {
         categoryController = new CategoryController();
         initComponents();
+
+        loadTable();
     }
 
     /**
@@ -44,7 +48,7 @@ public class RoomCatagoriesView extends javax.swing.JFrame {
         btnUpdate = new javax.swing.JButton();
         btnDelete = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tblCategroy = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -76,7 +80,7 @@ public class RoomCatagoriesView extends javax.swing.JFrame {
             }
         });
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblCategroy.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -87,7 +91,7 @@ public class RoomCatagoriesView extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tblCategroy);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -198,9 +202,9 @@ public class RoomCatagoriesView extends javax.swing.JFrame {
     private javax.swing.JButton btnUpdate;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JLabel lblCategoryId;
     private javax.swing.JLabel lblCategoryName;
+    private javax.swing.JTable tblCategroy;
     private javax.swing.JTextField txtCategoryId;
     private javax.swing.JTextField txtCategoryName;
     // End of variables declaration//GEN-END:variables
@@ -209,9 +213,32 @@ public class RoomCatagoriesView extends javax.swing.JFrame {
         try {
             CategoryDto categoryDto = new CategoryDto(Integer.parseInt(txtCategoryId.getText()),
                     txtCategoryName.getText());
-            
+
             String resp = categoryController.add(categoryDto);
             JOptionPane.showMessageDialog(this, resp);
+        } catch (Exception ex) {
+            Logger.getLogger(RoomCatagoriesView.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(this, ex.getMessage());
+        }
+    }
+
+    private void loadTable() {
+        try {
+            String[] columns = {"Category ID", "Category Name"};
+            DefaultTableModel dtm = new DefaultTableModel(columns, 0) {
+                @Override
+                public boolean isCellEditable(int row, int column) {
+                    return false;
+                }
+            };
+            tblCategroy.setModel(dtm);
+
+            List<CategoryDto> categoryDtos = categoryController.getAll();
+            for (CategoryDto categoryDto : categoryDtos) {
+                Object[] rowData = {categoryDto.getCategoryID(), categoryDto.getCategoryName()};
+                dtm.addRow(rowData);
+
+            }
         } catch (Exception ex) {
             Logger.getLogger(RoomCatagoriesView.class.getName()).log(Level.SEVERE, null, ex);
             JOptionPane.showMessageDialog(this, ex.getMessage());
