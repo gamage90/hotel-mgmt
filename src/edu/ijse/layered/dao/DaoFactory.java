@@ -5,6 +5,7 @@
 package edu.ijse.layered.dao;
 
 import edu.ijse.layered.dao.custom.impl.CategoryDaoImpl;
+import edu.ijse.layered.dao.custom.impl.CustomerDaoImpl;
 
 /**
  *
@@ -29,6 +30,8 @@ public class DaoFactory {
         switch (type) {
             case ROOMCATEGORIES:
                 return new CategoryDaoImpl();
+            case CUSTOMERS:
+                return new CustomerDaoImpl();
 
             default:
                 return null;
@@ -36,6 +39,6 @@ public class DaoFactory {
     }
     
      public enum DaoTypes{
-        ROOMCATEGORIES
+        ROOMCATEGORIES, CUSTOMERS
     }
 }

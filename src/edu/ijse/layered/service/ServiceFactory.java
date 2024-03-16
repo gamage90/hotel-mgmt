@@ -27,7 +27,7 @@ public class ServiceFactory {
         switch (serviceType) {
             case ROOMCATEGORIES:
                 return new CategoryServiceImpl();
-            case CUSTOMER:
+            case CUSTOMERS:
                 return null;
             case ROOMS:
                 return null;
@@ -40,7 +40,7 @@ public class ServiceFactory {
     }
 
     public enum ServiceType{
-        ROOMCATEGORIES, CUSTOMER, ROOMS, RESERVATION
+        ROOMCATEGORIES, CUSTOMERS, ROOMS, RESERVATION
     }
     
 }
