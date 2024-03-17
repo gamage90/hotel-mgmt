@@ -5,6 +5,7 @@
 package edu.ijse.layered.service;
 
 import edu.ijse.layered.service.custom.impl.CategoryServiceImpl;
+import edu.ijse.layered.service.custom.impl.CustomerServiceImpl;
 
 /**
  *
@@ -28,7 +29,7 @@ public class ServiceFactory {
             case ROOMCATEGORIES:
                 return new CategoryServiceImpl();
             case CUSTOMERS:
-                return null;
+                return new CustomerServiceImpl();
             case ROOMS:
                 return null;
             case RESERVATION:
