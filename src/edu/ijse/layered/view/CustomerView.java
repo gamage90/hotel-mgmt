@@ -143,13 +143,13 @@ public class CustomerView extends javax.swing.JFrame {
                                     .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(txtPhone, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(103, 103, 103)
+                                        .addGap(118, 118, 118)
                                         .addComponent(btnDelete)
                                         .addGap(18, 18, 18)
                                         .addComponent(btnUpdate)
-                                        .addGap(27, 27, 27)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                         .addComponent(btnSave)))
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
+                                .addContainerGap(12, Short.MAX_VALUE))))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -269,8 +269,8 @@ public class CustomerView extends javax.swing.JFrame {
         txtEmail.setText("");
         txtPhone.setText("");
     }
-    
-    public void loadCustomers(){
+
+    public void loadCustomers() {
         try {
             String columns[] = {"Id", "Name", "Email", "Address", "Phone"};
             DefaultTableModel dtm = new DefaultTableModel(columns, 0) {
@@ -316,7 +316,7 @@ public class CustomerView extends javax.swing.JFrame {
     }
 
     private void searchCustomer() {
-String id = tblCustomer.getValueAt(tblCustomer.getSelectedRow(), 0).toString();
+        String id = tblCustomer.getValueAt(tblCustomer.getSelectedRow(), 0).toString();
         try {
             CustomerDto dto = customerController.getCustomer(id);
 
@@ -336,13 +336,13 @@ String id = tblCustomer.getValueAt(tblCustomer.getSelectedRow(), 0).toString();
     }
 
     private void updateCustomer() {
-         try {
+        try {
             CustomerDto dto = new CustomerDto();
-        dto.setCustomerID(Integer.parseInt(txtID.getText()));
-        dto.setCustomerName(txtName.getText());
-        dto.setCustomerEmail(txtEmail.getText());
-        dto.setCustomerAddress(txtAddress.getText());
-        dto.setCustomerPhone(txtPhone.getText());
+            dto.setCustomerID(Integer.parseInt(txtID.getText()));
+            dto.setCustomerName(txtName.getText());
+            dto.setCustomerEmail(txtEmail.getText());
+            dto.setCustomerAddress(txtAddress.getText());
+            dto.setCustomerPhone(txtPhone.getText());
 
             String resp = customerController.updateCustomer(dto);
             JOptionPane.showMessageDialog(this, resp);
@@ -356,7 +356,7 @@ String id = tblCustomer.getValueAt(tblCustomer.getSelectedRow(), 0).toString();
     }
 
     private void deleteCustomer() {
- try {
+        try {
             String custId = txtID.getText();
             String resp = customerController.deleteCustomer(custId);
             JOptionPane.showMessageDialog(this, resp);
@@ -366,6 +366,6 @@ String id = tblCustomer.getValueAt(tblCustomer.getSelectedRow(), 0).toString();
             Logger.getLogger(CustomerView.class.getName()).log(Level.SEVERE, null, ex);
             JOptionPane.showMessageDialog(this, ex.getMessage());
         }
-        
+
     }
 }

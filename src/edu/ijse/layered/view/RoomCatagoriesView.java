@@ -26,7 +26,6 @@ public class RoomCatagoriesView extends javax.swing.JFrame {
     public RoomCatagoriesView() {
         categoryController = new CategoryController();
         initComponents();
-
         loadTable();
     }
 
@@ -91,6 +90,11 @@ public class RoomCatagoriesView extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tblCategroy.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblCategroyMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tblCategroy);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -154,12 +158,16 @@ public class RoomCatagoriesView extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAddActionPerformed
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
-        // TODO add your handling code here:
+        updateCategory();
     }//GEN-LAST:event_btnUpdateActionPerformed
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
-        // TODO add your handling code here:
+        deleteCustomer();
     }//GEN-LAST:event_btnDeleteActionPerformed
+
+    private void tblCategroyMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblCategroyMouseClicked
+        searchCategory();
+    }//GEN-LAST:event_tblCategroyMouseClicked
 
     /**
      * @param args the command line arguments
@@ -209,6 +217,11 @@ public class RoomCatagoriesView extends javax.swing.JFrame {
     private javax.swing.JTextField txtCategoryName;
     // End of variables declaration//GEN-END:variables
 
+    private void clear() {
+        txtCategoryId.setText("");
+        txtCategoryName.setText("");
+    }
+    
     private void addRoomCategory() {
         try {
             CategoryDto categoryDto = new CategoryDto(Integer.parseInt(txtCategoryId.getText()),
@@ -216,6 +229,8 @@ public class RoomCatagoriesView extends javax.swing.JFrame {
 
             String resp = categoryController.add(categoryDto);
             JOptionPane.showMessageDialog(this, resp);
+            clear();
+            loadTable();
         } catch (Exception ex) {
             Logger.getLogger(RoomCatagoriesView.class.getName()).log(Level.SEVERE, null, ex);
             JOptionPane.showMessageDialog(this, ex.getMessage());
@@ -243,5 +258,53 @@ public class RoomCatagoriesView extends javax.swing.JFrame {
             Logger.getLogger(RoomCatagoriesView.class.getName()).log(Level.SEVERE, null, ex);
             JOptionPane.showMessageDialog(this, ex.getMessage());
         }
+    }
+
+    private void updateCategory() {
+        try {
+            CategoryDto dto = new CategoryDto();
+            dto.setCategoryID(Integer.parseInt(txtCategoryId.getText()));
+            dto.setCategoryName(txtCategoryName.getText());
+
+            String resp = categoryController.update(dto);
+            JOptionPane.showMessageDialog(this, resp);
+            loadTable();
+            clear();
+        } catch (Exception ex) {
+            Logger.getLogger(CustomerView.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(this, ex.getMessage());
+        }
+
+    }
+
+    private void deleteCustomer() {
+        try {
+            String categoryID = txtCategoryId.getText();
+            String resp = categoryController.delete(categoryID);
+            JOptionPane.showMessageDialog(this, resp);
+            loadTable();
+            clear();
+        } catch (Exception ex) {
+            Logger.getLogger(CustomerView.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(this, ex.getMessage());
+        }
+    }
+
+    private void searchCategory() {
+        String id = tblCategroy.getValueAt(tblCategroy.getSelectedRow(), 0).toString();
+        try {
+            CategoryDto dto = categoryController.get(id);
+
+            if (dto != null) {
+                txtCategoryId.setText(Integer.toString(dto.getCategoryID()));
+                txtCategoryName.setText(dto.getCategoryName());
+
+            } else {
+                JOptionPane.showMessageDialog(this, "Customer Not Found");
+            }
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, ex.getMessage());
+        }
+
     }
 }
