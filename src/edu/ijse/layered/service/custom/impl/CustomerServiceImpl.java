@@ -11,7 +11,7 @@ import edu.ijse.layered.entity.CustomerEntity;
 import edu.ijse.layered.service.custom.CustomerService;
 import java.util.ArrayList;
 import java.util.List;
-import javax.swing.text.html.parser.DTD;
+//import javax.swing.text.html.parser.DTD;
 
 /**
  *
