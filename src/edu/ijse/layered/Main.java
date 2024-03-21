@@ -6,6 +6,7 @@ package edu.ijse.layered;
 
 import edu.ijse.layered.view.CustomerView;
 import edu.ijse.layered.view.RoomCatagoriesView;
+import edu.ijse.layered.view.RoomsView;
 
 /**
  *
@@ -14,7 +15,8 @@ import edu.ijse.layered.view.RoomCatagoriesView;
 public class Main {
     public static void main(String[] args) {
         //System.out.println("Hello World");
-        new RoomCatagoriesView().setVisible(true);
+        //new RoomCatagoriesView().setVisible(true);
        // new CustomerView().setVisible(true);
+       new RoomsView().setVisible(true);
     }
 }
