@@ -6,6 +6,8 @@ package edu.ijse.layered.dao;
 
 import edu.ijse.layered.dao.custom.impl.CategoryDaoImpl;
 import edu.ijse.layered.dao.custom.impl.CustomerDaoImpl;
+import edu.ijse.layered.dao.custom.impl.ReservaionsDaoImpl;
+import edu.ijse.layered.dao.custom.impl.ReservationsDetailDaoImpl;
 import edu.ijse.layered.dao.custom.impl.RoomsDaoImpl;
 
 /**
@@ -35,6 +37,10 @@ public class DaoFactory {
                 return new CustomerDaoImpl();
             case ROOMS:
                 return new RoomsDaoImpl();
+            case RESERVATIONS:
+                return new ReservaionsDaoImpl();
+            case RESERVATIONS_DETAIL:
+                return new ReservationsDetailDaoImpl();
 
             default:
                 return null;
@@ -42,6 +48,6 @@ public class DaoFactory {
     }
     
      public enum DaoTypes{
-        ROOMCATEGORIES, CUSTOMERS, ROOMS
+        ROOMCATEGORIES, CUSTOMERS, ROOMS, RESERVATIONS, RESERVATIONS_DETAIL
     }
 }

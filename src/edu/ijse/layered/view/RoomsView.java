@@ -6,7 +6,6 @@ package edu.ijse.layered.view;
 
 import edu.ijse.layered.controller.RoomController;
 import edu.ijse.layered.dto.RoomsDto;
-import java.util.HashSet;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -27,6 +26,7 @@ public class RoomsView extends javax.swing.JFrame {
     public RoomsView() {
         roomController = new RoomController();
         initComponents();
+        txtAV.setVisible(false);
         loadRooms();
     }
 
@@ -56,6 +56,7 @@ public class RoomsView extends javax.swing.JFrame {
         btnSave = new javax.swing.JButton();
         lblTitle = new javax.swing.JLabel();
         lblAvailableState = new javax.swing.JLabel();
+        txtAV = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -101,7 +102,7 @@ public class RoomsView extends javax.swing.JFrame {
             }
         });
 
-        btnSave.setText("SAVE");
+        btnSave.setText("CREATE");
         btnSave.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSaveActionPerformed(evt);
@@ -113,6 +114,8 @@ public class RoomsView extends javax.swing.JFrame {
         lblTitle.setText("Manage Rooms");
 
         lblAvailableState.setText("  ");
+
+        txtAV.setText("Availability");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -145,13 +148,15 @@ public class RoomsView extends javax.swing.JFrame {
                                 .addComponent(btnSave)
                                 .addContainerGap(18, Short.MAX_VALUE))
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                         .addComponent(txtCategory, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 101, Short.MAX_VALUE)
                                         .addComponent(txtRoomNum, javax.swing.GroupLayout.Alignment.LEADING)
                                         .addComponent(txtID, javax.swing.GroupLayout.Alignment.LEADING))
-                                    .addComponent(lblAvailableState))
-                                .addGap(0, 0, Short.MAX_VALUE))))))
+                                    .addComponent(lblAvailableState, javax.swing.GroupLayout.DEFAULT_SIZE, 101, Short.MAX_VALUE))
+                                .addGap(28, 28, 28)
+                                .addComponent(txtAV, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 269, Short.MAX_VALUE))))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -168,7 +173,7 @@ public class RoomsView extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lblCategory)
                             .addComponent(txtCategory, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(18, 18, 18)
+                .addGap(29, 29, 29)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(lblRoomNum)
@@ -177,7 +182,9 @@ public class RoomsView extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(txtRoomNum, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(lblAvailableState)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lblAvailableState)
+                            .addComponent(txtAV, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txtRate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -185,7 +192,7 @@ public class RoomsView extends javax.swing.JFrame {
                             .addComponent(btnSave)
                             .addComponent(btnUpdate)
                             .addComponent(btnDelete))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(46, 46, 46))
         );
@@ -258,6 +265,7 @@ public class RoomsView extends javax.swing.JFrame {
     private javax.swing.JLabel lblRoomNum;
     private javax.swing.JLabel lblTitle;
     private javax.swing.JTable tblRooms;
+    private javax.swing.JTextField txtAV;
     private javax.swing.JTextField txtCategory;
     private javax.swing.JTextField txtID;
     private javax.swing.JTextField txtRate;
@@ -282,6 +290,7 @@ public class RoomsView extends javax.swing.JFrame {
                 txtID.setText(Integer.toString(roomDto.getRoomID()));
                 txtCategory.setText(Integer.toString(roomDto.getRoomCatagory()));
                 txtRoomNum.setText(roomDto.getRoomNumber());
+                txtAV.setText(Integer.toString(roomDto.getRoomAvailability()));
                 ////////////
                 if(roomDto.getRoomAvailability()== 1){
                 lblAvailableState.setText("YES");
@@ -302,13 +311,15 @@ public class RoomsView extends javax.swing.JFrame {
     }
 
     private void updateRoom() {
+        
         try {
             RoomsDto roomsDto = new RoomsDto();
             roomsDto.setRoomID(Integer.parseInt(txtID.getText()));
             roomsDto.setRoomCatagory(Integer.parseInt(txtCategory.getText()));
             roomsDto.setRoomNumber(txtRoomNum.getText());
             roomsDto.setRoomRate(Double.parseDouble(txtRate.getText()));
-
+            roomsDto.setRoomAvailability(Integer.parseInt(txtAV.getText()));
+            
             String resp = roomController.updateRoom(roomsDto);
             JOptionPane.showMessageDialog(this, resp);
             loadRooms();
@@ -340,6 +351,7 @@ public class RoomsView extends javax.swing.JFrame {
         roomsDto.setRoomCatagory(Integer.parseInt(txtCategory.getText()));
         roomsDto.setRoomNumber(txtRoomNum.getText());        
         roomsDto.setRoomRate(Double.parseDouble(txtRate.getText()));
+        roomsDto.setRoomAvailability(Integer.parseInt("1"));
 
         try {
             String result = roomController.saveRoom(roomsDto);
