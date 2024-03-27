@@ -9,68 +9,144 @@ package edu.ijse.layered.entity;
  * @author Home
  */
 public class ReservationsEntity {
-    
-    private Integer resId;
-    private String date;
-    private Integer custId;
+   private Integer reservationsID ;
+   private Integer customerID;
+   private Integer roomID;
+   private String reservationsDate;
+   private String checkInDate;
+   private String checkOutDate;
+   private String resPackage;
+   private Double resAmount;
 
     public ReservationsEntity() {
     }
 
-    public ReservationsEntity(Integer resId, String date, Integer custId) {
-        this.resId = resId;
-        this.date = date;
-        this.custId = custId;
+    public ReservationsEntity(Integer reservationsID, Integer customerID, Integer roomID, String reservationsDate, String checkInDate, String checkOutDate, String resPackage, Double resAmount) {
+        this.reservationsID = reservationsID;
+        this.customerID = customerID;
+        this.roomID = roomID;
+        this.reservationsDate = reservationsDate;
+        this.checkInDate = checkInDate;
+        this.checkOutDate = checkOutDate;
+        this.resPackage = resPackage;
+        this.resAmount = resAmount;
     }
 
     /**
-     * @return the resId
+     * @return the reservationsID
      */
-    public Integer getResId() {
-        return resId;
+    public Integer getReservationsID() {
+        return reservationsID;
     }
 
     /**
-     * @param resId the resId to set
+     * @param reservationsID the reservationsID to set
      */
-    public void setResId(Integer resId) {
-        this.resId = resId;
+    public void setReservationsID(Integer reservationsID) {
+        this.reservationsID = reservationsID;
     }
 
     /**
-     * @return the date
+     * @return the customerID
      */
-    public String getDate() {
-        return date;
+    public Integer getCustomerID() {
+        return customerID;
     }
 
     /**
-     * @param date the date to set
+     * @param customerID the customerID to set
      */
-    public void setDate(String date) {
-        this.date = date;
+    public void setCustomerID(Integer customerID) {
+        this.customerID = customerID;
     }
 
     /**
-     * @return the custId
+     * @return the roomID
      */
-    public Integer getCustId() {
-        return custId;
+    public Integer getRoomID() {
+        return roomID;
     }
 
     /**
-     * @param custId the custId to set
+     * @param roomID the roomID to set
      */
-    public void setCustId(Integer custId) {
-        this.custId = custId;
+    public void setRoomID(Integer roomID) {
+        this.roomID = roomID;
+    }
+
+    /**
+     * @return the reservationsDate
+     */
+    public String getReservationsDate() {
+        return reservationsDate;
+    }
+
+    /**
+     * @param reservationsDate the reservationsDate to set
+     */
+    public void setReservationsDate(String reservationsDate) {
+        this.reservationsDate = reservationsDate;
+    }
+
+    /**
+     * @return the checkInDate
+     */
+    public String getCheckInDate() {
+        return checkInDate;
+    }
+
+    /**
+     * @param checkInDate the checkInDate to set
+     */
+    public void setCheckInDate(String checkInDate) {
+        this.checkInDate = checkInDate;
+    }
+
+    /**
+     * @return the checkOutDate
+     */
+    public String getCheckOutDate() {
+        return checkOutDate;
+    }
+
+    /**
+     * @param checkOutDate the checkOutDate to set
+     */
+    public void setCheckOutDate(String checkOutDate) {
+        this.checkOutDate = checkOutDate;
+    }
+
+    /**
+     * @return the resPackage
+     */
+    public String getResPackage() {
+        return resPackage;
+    }
+
+    /**
+     * @param resPackage the resPackage to set
+     */
+    public void setResPackage(String resPackage) {
+        this.resPackage = resPackage;
+    }
+
+    /**
+     * @return the resAmount
+     */
+    public Double getResAmount() {
+        return resAmount;
+    }
+
+    /**
+     * @param resAmount the resAmount to set
+     */
+    public void setResAmount(Double resAmount) {
+        this.resAmount = resAmount;
     }
 
     @Override
     public String toString() {
-        return "ReservationsEntity{" + "resId=" + resId + ", date=" + date + ", custId=" + custId + '}';
-    }
-
-    
-    
-    
+        return "ReservationsEntity{" + "reservationsID=" + reservationsID + ", customerID=" + customerID + ", roomID=" + roomID + ", reservationsDate=" + reservationsDate + ", checkInDate=" + checkInDate + ", checkOutDate=" + checkOutDate + ", resPackage=" + resPackage + ", resAmount=" + resAmount + '}';
+    }      
+   
 }

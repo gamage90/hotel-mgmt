@@ -11,6 +11,6 @@ import edu.ijse.layered.entity.ReservationsEntity;
  *
  * @author Home
  */
-public interface ReservaionsDao extends CrudDao<ReservationsEntity, String>{
+public interface ReservationsDao extends CrudDao<ReservationsEntity, String>{
     
 }
