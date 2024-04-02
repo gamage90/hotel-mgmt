@@ -31,9 +31,9 @@ public class ReservationsDaoImpl implements ReservationsDao {
 
     @Override
     public boolean update(ReservationsEntity t) throws Exception {
-        return CrudUtil.executeUpdate("UPDATE reservations SET customer_id=? room_id=? "
-                + "reservation_date=? check_in_date=? check_out_date=? package=? amount=? "
-                + "WHERE reservation_id=?",
+        return CrudUtil.executeUpdate("UPDATE reservations SET customer_id=?, room_id=?, "
+                + "reservation_date=?, check_in_date=?, check_out_date=?, "
+                + "package=?, amount=? WHERE reservation_id=?",
                 t.getCustomerID(),
                 t.getRoomID(),
                 t.getReservationsDate(),
@@ -47,20 +47,20 @@ public class ReservationsDaoImpl implements ReservationsDao {
 
     @Override
     public boolean delete(String id) throws Exception {
-            return CrudUtil.executeUpdate("DELETE FROM reservations WHERE reservation_id=?", id);
+        return CrudUtil.executeUpdate("DELETE FROM reservations WHERE reservation_id=?", id);
     }
 
     @Override
     public ReservationsEntity get(String id) throws Exception {
         ResultSet rst = CrudUtil.executeQuery("SELECT * FROM reservations WHERE reservation_id=?", id);
         while (rst.next()) {
-            return new ReservationsEntity(rst.getInt("reservation_id"), 
-                    rst.getInt("customer_id"), 
-                    rst.getInt("room_id"), 
-                    rst.getString("reservation_date"), 
-                    rst.getString("check_in_date"), 
-                    rst.getString("check_out_date"), 
-                    rst.getString("package"), 
+            return new ReservationsEntity(rst.getInt("reservation_id"),
+                    rst.getInt("customer_id"),
+                    rst.getInt("room_id"),
+                    rst.getString("reservation_date"),
+                    rst.getString("check_in_date"),
+                    rst.getString("check_out_date"),
+                    rst.getString("package"),
                     rst.getDouble("amount"));
         }
         return null;
@@ -71,19 +71,19 @@ public class ReservationsDaoImpl implements ReservationsDao {
     public ArrayList<ReservationsEntity> getAll() throws Exception {
         ArrayList<ReservationsEntity> reservationsEntities = new ArrayList<>();
         ResultSet rst = CrudUtil.executeQuery("SELECT * FROM reservations");
-        
+
         while (rst.next()) {
-             reservationsEntities.add(new ReservationsEntity(rst.getInt("reservation_id"), 
-                    rst.getInt("customer_id"), 
-                    rst.getInt("room_id"), 
-                    rst.getString("reservation_date"), 
-                    rst.getString("check_in_date"), 
-                    rst.getString("check_out_date"), 
-                    rst.getString("package"), 
-                    rst.getDouble("amount")));        
-         }  
-         return reservationsEntities;
+            reservationsEntities.add(new ReservationsEntity(rst.getInt("reservation_id"),
+                    rst.getInt("customer_id"),
+                    rst.getInt("room_id"),
+                    rst.getString("reservation_date"),
+                    rst.getString("check_in_date"),
+                    rst.getString("check_out_date"),
+                    rst.getString("package"),
+                    rst.getDouble("amount")));
+        }
+        return reservationsEntities;
 
     }
-    
+
 }

@@ -15,7 +15,7 @@ import java.util.List;
  */
 public class ReservationsController {
     
-    private ReservationsService reservationsService = (ReservationsService) ServiceFactory.getInstance().getService(ServiceFactory.ServiceType.RESERVATION);
+    private ReservationsService reservationsService = (ReservationsService) ServiceFactory.getInstance().getService(ServiceFactory.ServiceType.RESERVATIONS);
     
     public String saveReservations(ReservationsDto reservationsDto) throws Exception{
         return reservationsService.addReservations(reservationsDto);

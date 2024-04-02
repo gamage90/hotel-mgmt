@@ -34,7 +34,7 @@ public class ServiceFactory {
                 return new CustomerServiceImpl();
             case ROOMS:
                 return new RoomServiceImpl();
-            case RESERVATION:
+            case RESERVATIONS:
                 return new ReservationsServiceImpl();
             default:
                 return null;
@@ -43,7 +43,7 @@ public class ServiceFactory {
     }
 
     public enum ServiceType{
-        ROOMCATEGORIES, CUSTOMERS, ROOMS, RESERVATION
+        ROOMCATEGORIES, CUSTOMERS, ROOMS, RESERVATIONS
     }
     
 }
