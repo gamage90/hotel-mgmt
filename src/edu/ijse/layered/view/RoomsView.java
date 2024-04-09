@@ -57,6 +57,9 @@ public class RoomsView extends javax.swing.JFrame {
         lblTitle = new javax.swing.JLabel();
         lblAvailableState = new javax.swing.JLabel();
         txtAV = new javax.swing.JTextField();
+        btnReservationsView = new javax.swing.JButton();
+        btnCustomersView = new javax.swing.JButton();
+        btnCatagoriesView = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -117,6 +120,27 @@ public class RoomsView extends javax.swing.JFrame {
 
         txtAV.setText("Availability");
 
+        btnReservationsView.setText("Reservations");
+        btnReservationsView.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnReservationsViewActionPerformed(evt);
+            }
+        });
+
+        btnCustomersView.setText("Customers");
+        btnCustomersView.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCustomersViewActionPerformed(evt);
+            }
+        });
+
+        btnCatagoriesView.setText("Catagories");
+        btnCatagoriesView.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCatagoriesViewActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -126,9 +150,6 @@ public class RoomsView extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 586, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblID)
@@ -140,23 +161,34 @@ public class RoomsView extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(txtRate, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(118, 118, 118)
-                                .addComponent(btnDelete)
-                                .addGap(18, 18, 18)
-                                .addComponent(btnUpdate)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(btnSave)
-                                .addContainerGap(18, Short.MAX_VALUE))
+                                .addContainerGap())
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addComponent(txtCategory, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 101, Short.MAX_VALUE)
-                                        .addComponent(txtRoomNum, javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(txtID, javax.swing.GroupLayout.Alignment.LEADING))
+                                    .addComponent(txtCategory, javax.swing.GroupLayout.DEFAULT_SIZE, 101, Short.MAX_VALUE)
+                                    .addComponent(txtRoomNum)
+                                    .addComponent(txtID)
                                     .addComponent(lblAvailableState, javax.swing.GroupLayout.DEFAULT_SIZE, 101, Short.MAX_VALUE))
-                                .addGap(28, 28, 28)
-                                .addComponent(txtAV, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 269, Short.MAX_VALUE))))))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(28, 28, 28)
+                                        .addComponent(txtAV, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(0, 269, Short.MAX_VALUE))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(btnReservationsView, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE)
+                                            .addComponent(btnCustomersView, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(btnCatagoriesView, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                        .addGap(35, 35, 35))))))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 586, javax.swing.GroupLayout.PREFERRED_SIZE)))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnDelete)
+                .addGap(18, 18, 18)
+                .addComponent(btnUpdate)
+                .addGap(18, 18, 18)
+                .addComponent(btnSave)
+                .addGap(174, 174, 174))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -168,19 +200,28 @@ public class RoomsView extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblID)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnReservationsView))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lblCategory)
-                            .addComponent(txtCategory, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(29, 29, 29)
+                            .addComponent(txtCategory, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnCustomersView))))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(28, 28, 28)
                         .addComponent(lblRoomNum)
                         .addGap(18, 18, 18)
                         .addComponent(lblAvailable))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(txtRoomNum, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(28, 28, 28)
+                                .addComponent(txtRoomNum, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(btnCatagoriesView)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lblAvailableState)
@@ -188,13 +229,15 @@ public class RoomsView extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txtRate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblRate)
-                            .addComponent(btnSave)
-                            .addComponent(btnUpdate)
-                            .addComponent(btnDelete))))
+                            .addComponent(lblRate))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(46, 46, 46))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnSave)
+                    .addComponent(btnUpdate)
+                    .addComponent(btnDelete))
+                .addGap(11, 11, 11))
         );
 
         pack();
@@ -215,6 +258,21 @@ public class RoomsView extends javax.swing.JFrame {
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
         saveRoom();//New method created
     }//GEN-LAST:event_btnSaveActionPerformed
+
+    private void btnReservationsViewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReservationsViewActionPerformed
+        new ReservationsView().setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_btnReservationsViewActionPerformed
+
+    private void btnCustomersViewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCustomersViewActionPerformed
+        new CustomerView().setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_btnCustomersViewActionPerformed
+
+    private void btnCatagoriesViewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCatagoriesViewActionPerformed
+        new RoomCatagoriesView().setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_btnCatagoriesViewActionPerformed
 
     /**
      * @param args the command line arguments
@@ -252,7 +310,10 @@ public class RoomsView extends javax.swing.JFrame {
 //    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnCatagoriesView;
+    private javax.swing.JButton btnCustomersView;
     private javax.swing.JButton btnDelete;
+    private javax.swing.JButton btnReservationsView;
     private javax.swing.JButton btnSave;
     private javax.swing.JButton btnUpdate;
     private javax.swing.JScrollPane jScrollPane1;
@@ -292,11 +353,10 @@ public class RoomsView extends javax.swing.JFrame {
                 txtRoomNum.setText(roomDto.getRoomNumber());
                 txtAV.setText(Integer.toString(roomDto.getRoomAvailability()));
                 ////////////
-                if(roomDto.getRoomAvailability()== 1){
-                lblAvailableState.setText("YES");
-                }
-                else{
-                lblAvailableState.setText("NO");
+                if (roomDto.getRoomAvailability() == 1) {
+                    lblAvailableState.setText("YES");
+                } else {
+                    lblAvailableState.setText("NO");
                 }
                 ////////////
                 txtRate.setText(Double.toString(roomDto.getRoomRate()));
@@ -311,7 +371,7 @@ public class RoomsView extends javax.swing.JFrame {
     }
 
     private void updateRoom() {
-        
+
         try {
             RoomsDto roomsDto = new RoomsDto();
             roomsDto.setRoomID(Integer.parseInt(txtID.getText()));
@@ -319,7 +379,7 @@ public class RoomsView extends javax.swing.JFrame {
             roomsDto.setRoomNumber(txtRoomNum.getText());
             roomsDto.setRoomRate(Double.parseDouble(txtRate.getText()));
             roomsDto.setRoomAvailability(Integer.parseInt(txtAV.getText()));
-            
+
             String resp = roomController.updateRoom(roomsDto);
             JOptionPane.showMessageDialog(this, resp);
             loadRooms();
@@ -349,7 +409,7 @@ public class RoomsView extends javax.swing.JFrame {
         RoomsDto roomsDto = new RoomsDto();
         roomsDto.setRoomID(Integer.parseInt(txtID.getText()));
         roomsDto.setRoomCatagory(Integer.parseInt(txtCategory.getText()));
-        roomsDto.setRoomNumber(txtRoomNum.getText());        
+        roomsDto.setRoomNumber(txtRoomNum.getText());
         roomsDto.setRoomRate(Double.parseDouble(txtRate.getText()));
         roomsDto.setRoomAvailability(Integer.parseInt("1"));
 

@@ -37,9 +37,6 @@ public class ReservationsView extends javax.swing.JFrame {
         roomsController = new RoomController();
         initComponents();
         loadReservations();
-        loadComboBox();
-        loadComboCustomer();
-        loadComboRoom();
     }
 
     /**
@@ -66,19 +63,17 @@ public class ReservationsView extends javax.swing.JFrame {
         btnDelete = new javax.swing.JButton();
         txtRoomId = new javax.swing.JTextField();
         txtCheckIn = new javax.swing.JTextField();
-        btnSave = new javax.swing.JButton();
+        btnNewReservationsView = new javax.swing.JButton();
         lblTitleRes = new javax.swing.JLabel();
         lblPkg = new javax.swing.JLabel();
         lblAmmont = new javax.swing.JLabel();
         txtAmount = new javax.swing.JTextField();
-        btnValidateCust = new javax.swing.JButton();
-        btnValidateRoom = new javax.swing.JButton();
         lblCustVal = new javax.swing.JLabel();
         lblRoomVal = new javax.swing.JLabel();
-        comboPkg = new javax.swing.JComboBox<>();
         txtPkg = new javax.swing.JTextField();
-        comboCustomer = new javax.swing.JComboBox<>();
-        comboRoom = new javax.swing.JComboBox<>();
+        btnCustomersView = new javax.swing.JButton();
+        btnCatagoriesView = new javax.swing.JButton();
+        btnRoomsView = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setName("Reservations"); // NOI18N
@@ -111,9 +106,8 @@ public class ReservationsView extends javax.swing.JFrame {
 
         lblCheckIn.setText("Check-IN");
 
-        txtCustID.setEnabled(false);
-
         btnUpdate.setText("Update");
+        btnUpdate.setEnabled(false);
         btnUpdate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnUpdateActionPerformed(evt);
@@ -127,12 +121,10 @@ public class ReservationsView extends javax.swing.JFrame {
             }
         });
 
-        txtRoomId.setEnabled(false);
-
-        btnSave.setText("BOOK");
-        btnSave.addActionListener(new java.awt.event.ActionListener() {
+        btnNewReservationsView.setText("New");
+        btnNewReservationsView.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSaveActionPerformed(evt);
+                btnNewReservationsViewActionPerformed(evt);
             }
         });
 
@@ -144,50 +136,36 @@ public class ReservationsView extends javax.swing.JFrame {
 
         lblAmmont.setText("Amount");
 
-        btnValidateCust.setText("Validate");
-        btnValidateCust.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnValidateCustActionPerformed(evt);
-            }
-        });
-
-        btnValidateRoom.setText("Validate");
-        btnValidateRoom.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnValidateRoomActionPerformed(evt);
-            }
-        });
-
         lblCustVal.setText("  ");
 
         lblRoomVal.setText("  ");
 
-        comboPkg.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
+        txtPkg.setEditable(false);
         txtPkg.setText("  ");
-        txtPkg.setEnabled(false);
-
-        comboCustomer.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        comboCustomer.addActionListener(new java.awt.event.ActionListener() {
+        txtPkg.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                comboCustomerActionPerformed(evt);
-            }
-        });
-        comboCustomer.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
-            public void propertyChange(java.beans.PropertyChangeEvent evt) {
-                comboCustomerPropertyChange(evt);
+                txtPkgActionPerformed(evt);
             }
         });
 
-        comboRoom.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        comboRoom.addActionListener(new java.awt.event.ActionListener() {
+        btnCustomersView.setText("Customers");
+        btnCustomersView.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                comboRoomActionPerformed(evt);
+                btnCustomersViewActionPerformed(evt);
             }
         });
-        comboRoom.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
-            public void propertyChange(java.beans.PropertyChangeEvent evt) {
-                comboRoomPropertyChange(evt);
+
+        btnCatagoriesView.setText("Catagories");
+        btnCatagoriesView.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCatagoriesViewActionPerformed(evt);
+            }
+        });
+
+        btnRoomsView.setText("Rooms");
+        btnRoomsView.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRoomsViewActionPerformed(evt);
             }
         });
 
@@ -214,43 +192,36 @@ public class ReservationsView extends javax.swing.JFrame {
                         .addGap(50, 50, 50)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
+                                .addComponent(txtAmount, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtCheckIn, javax.swing.GroupLayout.DEFAULT_SIZE, 79, Short.MAX_VALUE)
+                                    .addComponent(txtCheckIn, javax.swing.GroupLayout.DEFAULT_SIZE, 116, Short.MAX_VALUE)
                                     .addComponent(txtRoomId)
                                     .addComponent(txtResID)
                                     .addComponent(txtCheckOut, javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(txtPkg)
                                     .addComponent(txtCustID))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(6, 6, 6)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(comboRoom, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(comboCustomer, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addComponent(btnValidateRoom, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(lblRoomVal, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addComponent(btnValidateCust, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(lblCustVal, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(comboPkg, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(173, 173, 173)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(btnUpdate)
-                                            .addComponent(btnSave)
-                                            .addComponent(btnDelete))))
-                                .addGap(14, 14, 14))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(txtAmount, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE))))
+                                    .addComponent(lblCustVal, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lblRoomVal, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(59, 59, 59)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(btnRoomsView, javax.swing.GroupLayout.DEFAULT_SIZE, 108, Short.MAX_VALUE)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(btnCustomersView, javax.swing.GroupLayout.DEFAULT_SIZE, 108, Short.MAX_VALUE)
+                                        .addComponent(btnNewReservationsView, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(btnCatagoriesView, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                .addGap(5, 5, 5))))
                     .addComponent(jScrollPane1))
                 .addGap(8, 8, 8))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(243, 243, 243))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -258,51 +229,56 @@ public class ReservationsView extends javax.swing.JFrame {
                 .addComponent(lblTitleRes, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(3, 3, 3)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 3, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblResID)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(txtResID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtResID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnNewReservationsView))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lblCustID)
                             .addComponent(txtCustID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnValidateCust)
                             .addComponent(lblCustVal)
-                            .addComponent(comboCustomer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(18, 18, 18)
+                            .addComponent(btnCustomersView))))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblRoomId)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtRoomId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnValidateRoom)
-                            .addComponent(lblRoomVal)
-                            .addComponent(comboRoom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblRoomId)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(txtRoomId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lblRoomVal))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(txtCheckIn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lblCheckIn))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(txtCheckOut, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lblCheckOut))))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtCheckIn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnDelete)
-                            .addComponent(lblCheckIn))
+                            .addComponent(lblPkg)
+                            .addComponent(txtPkg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(8, 8, 8)
+                        .addComponent(btnCatagoriesView)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtCheckOut, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblCheckOut)
-                            .addComponent(btnUpdate))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(comboPkg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(lblPkg)
-                        .addComponent(btnSave)
-                        .addComponent(txtPkg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(5, 5, 5)
+                        .addComponent(btnRoomsView)))
+                .addGap(6, 6, 6)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblAmmont)
                     .addComponent(txtAmount, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(12, 12, 12)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(46, 46, 46))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnUpdate)
+                    .addComponent(btnDelete))
+                .addGap(11, 11, 11))
         );
 
         pack();
@@ -320,33 +296,28 @@ public class ReservationsView extends javax.swing.JFrame {
         deleteReservations();
     }//GEN-LAST:event_btnDeleteActionPerformed
 
-    private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
-        saveReservations();//New method created
-    }//GEN-LAST:event_btnSaveActionPerformed
+    private void btnNewReservationsViewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNewReservationsViewActionPerformed
+        createReservationsWindow();//New method created
+    }//GEN-LAST:event_btnNewReservationsViewActionPerformed
 
-    private void btnValidateCustActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnValidateCustActionPerformed
-        searchCustomer();
-    }//GEN-LAST:event_btnValidateCustActionPerformed
-
-    private void btnValidateRoomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnValidateRoomActionPerformed
-        searchRoom();
-    }//GEN-LAST:event_btnValidateRoomActionPerformed
-
-    private void comboCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboCustomerActionPerformed
-
-    }//GEN-LAST:event_comboCustomerActionPerformed
-
-    private void comboCustomerPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_comboCustomerPropertyChange
-
-    }//GEN-LAST:event_comboCustomerPropertyChange
-
-    private void comboRoomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboRoomActionPerformed
+    private void txtPkgActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPkgActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_comboRoomActionPerformed
+    }//GEN-LAST:event_txtPkgActionPerformed
 
-    private void comboRoomPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_comboRoomPropertyChange
-        // TODO add your handling code here:
-    }//GEN-LAST:event_comboRoomPropertyChange
+    private void btnCustomersViewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCustomersViewActionPerformed
+        new CustomerView().setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_btnCustomersViewActionPerformed
+
+    private void btnCatagoriesViewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCatagoriesViewActionPerformed
+        new RoomCatagoriesView().setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_btnCatagoriesViewActionPerformed
+
+    private void btnRoomsViewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRoomsViewActionPerformed
+        new RoomsView().setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_btnRoomsViewActionPerformed
 
     /**
      * @param args the command line arguments
@@ -384,14 +355,12 @@ public class ReservationsView extends javax.swing.JFrame {
 //    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnCatagoriesView;
+    private javax.swing.JButton btnCustomersView;
     private javax.swing.JButton btnDelete;
-    private javax.swing.JButton btnSave;
+    private javax.swing.JButton btnNewReservationsView;
+    private javax.swing.JButton btnRoomsView;
     private javax.swing.JButton btnUpdate;
-    private javax.swing.JButton btnValidateCust;
-    private javax.swing.JButton btnValidateRoom;
-    private javax.swing.JComboBox<String> comboCustomer;
-    private javax.swing.JComboBox<String> comboPkg;
-    private javax.swing.JComboBox<String> comboRoom;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JLabel lblAmmont;
@@ -460,14 +429,15 @@ public class ReservationsView extends javax.swing.JFrame {
         ReservationsDto reservationsDto = new ReservationsDto();
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         reservationsDto.setReservationsID(Integer.parseInt(txtResID.getText()));
-        //reservationsDto.setCustomerID(Integer.parseInt(txtCustID.getText()));
-        reservationsDto.setCustomerID(Integer.parseInt((String) comboCustomer.getSelectedItem()));
-        //reservationsDto.setRoomID(Integer.parseInt(txtRoomId.getText()));
-        reservationsDto.setRoomID(Integer.parseInt((String) comboRoom.getSelectedItem()));
+        reservationsDto.setCustomerID(Integer.parseInt(txtCustID.getText()));
+        //   reservationsDto.setCustomerID(Integer.parseInt((String) comboCustomer.getSelectedItem()));
+        reservationsDto.setRoomID(Integer.parseInt(txtRoomId.getText()));
+        //   reservationsDto.setRoomID(Integer.parseInt((String) comboRoom.getSelectedItem()));
         reservationsDto.setReservationsDate(sdf.format(new Date()));
         reservationsDto.setCheckInDate(txtCheckIn.getText());
         reservationsDto.setCheckOutDate(txtCheckOut.getText());
-        reservationsDto.setResPackage((String) comboPkg.getSelectedItem());
+        //reservationsDto.setResPackage((String) comboPkg.getSelectedItem());
+        reservationsDto.setResPackage(txtPkg.getText());
         reservationsDto.setResAmount(Double.parseDouble(txtAmount.getText()));
 
         try {
@@ -488,14 +458,14 @@ public class ReservationsView extends javax.swing.JFrame {
             ReservationsDto reservationsDto = new ReservationsDto();
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
             reservationsDto.setReservationsID(Integer.parseInt(txtResID.getText()));
-            //reservationsDto.setCustomerID(Integer.parseInt(txtCustID.getText()));
-            reservationsDto.setCustomerID(Integer.parseInt((String) comboCustomer.getSelectedItem()));
-            //reservationsDto.setRoomID(Integer.parseInt(txtRoomId.getText()));
-            reservationsDto.setRoomID(Integer.parseInt((String) comboRoom.getSelectedItem()));
+            reservationsDto.setCustomerID(Integer.parseInt(txtCustID.getText()));
+            // reservationsDto.setCustomerID(Integer.parseInt((String) comboCustomer.getSelectedItem()));
+            reservationsDto.setRoomID(Integer.parseInt(txtRoomId.getText()));
+            // reservationsDto.setRoomID(Integer.parseInt((String) comboRoom.getSelectedItem()));
             reservationsDto.setReservationsDate(sdf.format(new Date()));
             reservationsDto.setCheckInDate(txtCheckIn.getText());
             reservationsDto.setCheckOutDate(txtCheckOut.getText());
-            reservationsDto.setResPackage((String) comboPkg.getSelectedItem());
+            reservationsDto.setResPackage(txtPkg.getText());
             reservationsDto.setResAmount(Double.parseDouble(txtAmount.getText()));
 
             String resp = reservationsController.updateReservations(reservationsDto);
@@ -537,6 +507,8 @@ public class ReservationsView extends javax.swing.JFrame {
                 txtPkg.setText(dto.getResPackage());
                 //lblLoadPkg.setText(dto.getResPackage());
                 txtAmount.setText(Double.toString(dto.getResAmount()));
+                searchCustomer();
+                searchRoom();
 
             } else {
                 JOptionPane.showMessageDialog(this, "Reservation Not Found");
@@ -549,7 +521,7 @@ public class ReservationsView extends javax.swing.JFrame {
     private void searchCustomer() {
         try {
             //String custId = txtCustID.getText();
-            String custId = (String) comboCustomer.getSelectedItem();
+            String custId = txtCustID.getText();
 
             CustomerDto customerDto = customerController.getCustomer(custId);
 
@@ -570,7 +542,7 @@ public class ReservationsView extends javax.swing.JFrame {
     private void searchRoom() {
         try {
             //String roomId = txtRoomId.getText();
-            String roomId = (String) comboRoom.getSelectedItem();
+            String roomId = txtRoomId.getText();
             String roomAvailable;
             RoomsDto roomsDto = roomsController.getRoom(roomId);
 
@@ -579,7 +551,7 @@ public class ReservationsView extends javax.swing.JFrame {
                 if (roomsDto.getRoomAvailability() == 1) {
                     roomAvailable = "Available";
                 } else {
-                    roomAvailable = "Unavailable";
+                    roomAvailable = "Reserved";
                 }
                 ////////////                
                 lblRoomVal.setText(roomsDto.getRoomNumber() + " | " + roomAvailable);
@@ -595,44 +567,9 @@ public class ReservationsView extends javax.swing.JFrame {
 
     }
 
-    private void loadComboBox() {
-        comboPkg.removeAllItems();
-        comboPkg.addItem("Full Board");
-        comboPkg.addItem("Half Board");
-        comboPkg.addItem("Bed and Breakfast");
-
-    }
-
-    private void loadComboCustomer() {
-        comboCustomer.removeAllItems();
-        try {
-            // DefaultComboBoxModel dtm = new DefaultComboBoxModel();
-            List<CustomerDto> customerDtos = customerController.getAllCustomer();
-            for (CustomerDto customerDto : customerDtos) {
-                Integer rowData = customerDto.getCustomerID();
-                comboCustomer.addItem(Integer.toString(rowData));
-            }
-
-        } catch (Exception ex) {
-            Logger.getLogger(ReservationsView.class.getName()).log(Level.SEVERE, null, ex);
-            JOptionPane.showMessageDialog(this, ex.getMessage());
-        }
-    }
-
-    private void loadComboRoom() {
-        comboRoom.removeAllItems();
-        try {
-            //DefaultComboBoxModel dtm = new DefaultComboBoxModel();
-            List<RoomsDto> roomsDtos = roomsController.getAllRooms();
-            for (RoomsDto roomsDto : roomsDtos) {
-                Integer rowData = roomsDto.getRoomID();
-                comboRoom.addItem(Integer.toString(rowData));
-            }
-
-        } catch (Exception ex) {
-            Logger.getLogger(ReservationsView.class.getName()).log(Level.SEVERE, null, ex);
-            JOptionPane.showMessageDialog(this, ex.getMessage());
-        }
+    private void createReservationsWindow() {
+        new NewReservationsView().setVisible(true);
+        this.setVisible(false);
     }
 
 }
