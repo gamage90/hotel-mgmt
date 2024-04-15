@@ -395,8 +395,8 @@ public class ReservationsView extends javax.swing.JFrame {
 
     private void loadReservations() {
         try {
-            String[] columns = {"Reservation Id", "customer_id", "Room ID", "Res Date", "CheckIN",
-                "Check Out", "Package", "Ammount"};
+            String[] columns = {"Reservation ID", "Customer ID", "Room ID", "Res Date", "Check IN",
+                "Check OUT", "Package", "Ammount"};
             DefaultTableModel dtm = new DefaultTableModel(columns, 0) {
                 @Override
                 public boolean isCellEditable(int row, int column) {
