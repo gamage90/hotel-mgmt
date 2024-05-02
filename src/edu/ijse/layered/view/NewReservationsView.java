@@ -103,28 +103,8 @@ public class NewReservationsView extends javax.swing.JFrame {
         comboPkg.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         comboCustomer.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        comboCustomer.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                comboCustomerActionPerformed(evt);
-            }
-        });
-        comboCustomer.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
-            public void propertyChange(java.beans.PropertyChangeEvent evt) {
-                comboCustomerPropertyChange(evt);
-            }
-        });
 
         comboRoom.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        comboRoom.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                comboRoomActionPerformed(evt);
-            }
-        });
-        comboRoom.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
-            public void propertyChange(java.beans.PropertyChangeEvent evt) {
-                comboRoomPropertyChange(evt);
-            }
-        });
 
         lblCheckIn.setText("Check-IN");
 
@@ -177,16 +157,6 @@ public class NewReservationsView extends javax.swing.JFrame {
         });
 
         jDateCheckOut.setDateFormatString("yyyy-MM-dd");
-        jDateCheckOut.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jDateCheckOutMouseClicked(evt);
-            }
-        });
-        jDateCheckOut.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
-            public void propertyChange(java.beans.PropertyChangeEvent evt) {
-                jDateCheckOutPropertyChange(evt);
-            }
-        });
 
         jDateCheckIn.setDateFormatString("yyyy-MM-dd");
         jDateCheckIn.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
@@ -345,22 +315,6 @@ public class NewReservationsView extends javax.swing.JFrame {
         searchRoom();
     }//GEN-LAST:event_btnValidateRoomActionPerformed
 
-    private void comboCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboCustomerActionPerformed
-
-    }//GEN-LAST:event_comboCustomerActionPerformed
-
-    private void comboCustomerPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_comboCustomerPropertyChange
-
-    }//GEN-LAST:event_comboCustomerPropertyChange
-
-    private void comboRoomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboRoomActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_comboRoomActionPerformed
-
-    private void comboRoomPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_comboRoomPropertyChange
-        // TODO add your handling code here:
-    }//GEN-LAST:event_comboRoomPropertyChange
-
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
         saveReservations();//New method created
     }//GEN-LAST:event_btnSaveActionPerformed
@@ -372,14 +326,6 @@ public class NewReservationsView extends javax.swing.JFrame {
     private void btnRefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRefreshActionPerformed
         refreshTable();
     }//GEN-LAST:event_btnRefreshActionPerformed
-
-    private void jDateCheckOutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jDateCheckOutMouseClicked
-
-    }//GEN-LAST:event_jDateCheckOutMouseClicked
-
-    private void jDateCheckOutPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jDateCheckOutPropertyChange
-
-    }//GEN-LAST:event_jDateCheckOutPropertyChange
 
     private void jDateCheckInPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jDateCheckInPropertyChange
         jDateCheckOut.getJCalendar().setMinSelectableDate(jDateCheckIn.getDate());
@@ -528,9 +474,7 @@ public class NewReservationsView extends javax.swing.JFrame {
         } catch (Exception ex) {
             Logger.getLogger(ReservationsView.class.getName()).log(Level.SEVERE, null, ex);
             JOptionPane.showMessageDialog(this, ex.getMessage());
-
         }
-
     }
 
     private void searchReservations() {

@@ -17,6 +17,7 @@ public class ReservationsController {
     
     private ReservationsService reservationsService = (ReservationsService) ServiceFactory.getInstance().getService(ServiceFactory.ServiceType.RESERVATIONS);
     
+    //as in Placeorder
     public String saveReservations(ReservationsDto reservationsDto) throws Exception{
         return reservationsService.addReservations(reservationsDto);
     }
