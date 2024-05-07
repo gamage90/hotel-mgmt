@@ -69,10 +69,14 @@
                               </Group>
                               <EmptySpace min="-2" pref="99" max="-2" attributes="0"/>
                           </Group>
-                          <Group type="102" alignment="0" attributes="0">
+                          <Group type="102" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="txtAmount" min="-2" pref="257" max="-2" attributes="0"/>
                                   <Component id="jDateCheckIn" min="-2" pref="130" max="-2" attributes="0"/>
+                                  <Group type="102" attributes="0">
+                                      <Component id="txtTotalAmount" min="-2" pref="88" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
+                                      <Component id="btnCalculate" min="-2" max="-2" attributes="0"/>
+                                  </Group>
                               </Group>
                               <EmptySpace max="32767" attributes="0"/>
                           </Group>
@@ -83,6 +87,7 @@
                               <Component id="btnCatagoryView" alignment="0" max="32767" attributes="0"/>
                               <Component id="btnRoomsView" alignment="0" max="32767" attributes="0"/>
                               <Component id="btnCustomerView" alignment="0" pref="96" max="32767" attributes="0"/>
+                              <Component id="btnPkgView" alignment="0" max="32767" attributes="0"/>
                           </Group>
                           <Component id="btnSave" min="-2" pref="96" max="-2" attributes="0"/>
                       </Group>
@@ -139,6 +144,7 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="lblCheckIn" min="-2" max="-2" attributes="0"/>
                           <Component id="jDateCheckIn" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnPkgView" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
@@ -163,8 +169,9 @@
               </Group>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="lblAmmont" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="txtAmount" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtTotalAmount" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="btnSave" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="btnCalculate" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
               <Component id="jScrollPane1" min="-2" pref="189" max="-2" attributes="0"/>
@@ -325,7 +332,7 @@
         <Property name="text" type="java.lang.String" value="Amount"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="txtAmount">
+    <Component class="javax.swing.JTextField" name="txtTotalAmount">
     </Component>
     <Component class="javax.swing.JButton" name="btnRefresh">
       <Properties>
@@ -370,6 +377,22 @@
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCatagoryViewActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="btnPkgView">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Packages"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnPkgViewActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="btnCalculate">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Calculate"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCalculateActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>

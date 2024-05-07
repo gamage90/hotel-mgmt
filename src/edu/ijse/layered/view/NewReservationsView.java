@@ -5,9 +5,11 @@
 package edu.ijse.layered.view;
 
 import edu.ijse.layered.controller.CustomerController;
+import edu.ijse.layered.controller.PackageController;
 import edu.ijse.layered.controller.ReservationsController;
 import edu.ijse.layered.controller.RoomController;
 import edu.ijse.layered.dto.CustomerDto;
+import edu.ijse.layered.dto.PackageDto;
 import edu.ijse.layered.dto.ReservationsDto;
 import edu.ijse.layered.dto.RoomsDto;
 import java.text.SimpleDateFormat;
@@ -27,7 +29,9 @@ public class NewReservationsView extends javax.swing.JFrame {
     private ReservationsController reservationsController;
     private CustomerController customerController;
     private RoomController roomsController;
+    private PackageController packageController;
 
+    
     /**
      * Creates new form NewReservationsView
      */
@@ -35,6 +39,7 @@ public class NewReservationsView extends javax.swing.JFrame {
         reservationsController = new ReservationsController();
         customerController = new CustomerController();
         roomsController = new RoomController();
+        packageController = new PackageController();
         initComponents();
         loadReservations();
         loadComboBox();
@@ -72,13 +77,15 @@ public class NewReservationsView extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tblReservatons = new javax.swing.JTable();
         lblAmmont = new javax.swing.JLabel();
-        txtAmount = new javax.swing.JTextField();
+        txtTotalAmount = new javax.swing.JTextField();
         btnRefresh = new javax.swing.JButton();
         jDateCheckOut = new com.toedter.calendar.JDateChooser();
         jDateCheckIn = new com.toedter.calendar.JDateChooser();
         btnCustomerView = new javax.swing.JButton();
         btnRoomsView = new javax.swing.JButton();
         btnCatagoryView = new javax.swing.JButton();
+        btnPkgView = new javax.swing.JButton();
+        btnCalculate = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -186,6 +193,20 @@ public class NewReservationsView extends javax.swing.JFrame {
             }
         });
 
+        btnPkgView.setText("Packages");
+        btnPkgView.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPkgViewActionPerformed(evt);
+            }
+        });
+
+        btnCalculate.setText("Calculate");
+        btnCalculate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCalculateActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -230,15 +251,19 @@ public class NewReservationsView extends javax.swing.JFrame {
                                 .addGap(99, 99, 99))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtAmount, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jDateCheckIn, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(jDateCheckIn, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(txtTotalAmount, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(34, 34, 34)
+                                        .addComponent(btnCalculate)))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addComponent(btnRefresh, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(btnCatagoryView, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(btnRoomsView, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btnCustomerView, javax.swing.GroupLayout.DEFAULT_SIZE, 96, Short.MAX_VALUE))
+                                .addComponent(btnCustomerView, javax.swing.GroupLayout.DEFAULT_SIZE, 96, Short.MAX_VALUE)
+                                .addComponent(btnPkgView, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(14, 14, 14))
                     .addComponent(jScrollPane1))
@@ -280,7 +305,8 @@ public class NewReservationsView extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblCheckIn)
-                            .addComponent(jDateCheckIn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jDateCheckIn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnPkgView))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jDateCheckOut, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -297,8 +323,9 @@ public class NewReservationsView extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblAmmont)
-                    .addComponent(txtAmount, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnSave))
+                    .addComponent(txtTotalAmount, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnSave)
+                    .addComponent(btnCalculate))
                 .addGap(11, 11, 11)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(46, 46, 46))
@@ -346,6 +373,14 @@ public class NewReservationsView extends javax.swing.JFrame {
         this.setVisible(false);
     }//GEN-LAST:event_btnCatagoryViewActionPerformed
 
+    private void btnPkgViewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPkgViewActionPerformed
+        new PackageView().setVisible(true);
+    }//GEN-LAST:event_btnPkgViewActionPerformed
+
+    private void btnCalculateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCalculateActionPerformed
+        calculateAmmount();
+    }//GEN-LAST:event_btnCalculateActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -382,8 +417,10 @@ public class NewReservationsView extends javax.swing.JFrame {
 //    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnCalculate;
     private javax.swing.JButton btnCatagoryView;
     private javax.swing.JButton btnCustomerView;
+    private javax.swing.JButton btnPkgView;
     private javax.swing.JButton btnRefresh;
     private javax.swing.JButton btnRoomsView;
     private javax.swing.JButton btnSave;
@@ -407,13 +444,13 @@ public class NewReservationsView extends javax.swing.JFrame {
     private javax.swing.JLabel lblRoomVal;
     private javax.swing.JLabel lblTitleRes;
     private javax.swing.JTable tblReservatons;
-    private javax.swing.JTextField txtAmount;
     private javax.swing.JTextField txtResID;
+    private javax.swing.JTextField txtTotalAmount;
     // End of variables declaration//GEN-END:variables
 
     private void clear() {
         txtResID.setText("");
-        txtAmount.setText("");
+        txtTotalAmount.setText("");
     }
 
     private void loadReservations() {
@@ -462,7 +499,7 @@ public class NewReservationsView extends javax.swing.JFrame {
         reservationsDto.setCheckInDate(dateIN.toString());
         reservationsDto.setCheckOutDate(dateOUT.toString());
         reservationsDto.setResPackage((String) comboPkg.getSelectedItem());
-        reservationsDto.setResAmount(Double.parseDouble(txtAmount.getText()));
+        reservationsDto.setResAmount(Double.parseDouble(txtTotalAmount.getText()));
 
         try {
             String result = reservationsController.saveReservations(reservationsDto);
@@ -487,7 +524,7 @@ public class NewReservationsView extends javax.swing.JFrame {
                 //txtCheckIn.setText(dto.getCheckInDate());
                 //txtCheckOut.setText(dto.getCheckOutDate());
                 //lblLoadPkg.setText(dto.getResPackage());
-                txtAmount.setText(Double.toString(dto.getResAmount()));
+                txtTotalAmount.setText(Double.toString(dto.getResAmount()));
 
             } else {
                 JOptionPane.showMessageDialog(this, "Reservation Not Found");
@@ -593,6 +630,29 @@ public class NewReservationsView extends javax.swing.JFrame {
     private void loadDates() {
         jDateCheckIn.getJCalendar().setMinSelectableDate((new Date()));
         jDateCheckOut.getJCalendar().setMinSelectableDate((new Date()));
+    }
+
+    private void calculateAmmount() {
+       try {
+            String roomId = (String) comboRoom.getSelectedItem();
+            RoomsDto roomsDto = roomsController.getRoom(roomId);
+            
+            String packageName = (String) comboPkg.getSelectedItem();
+            PackageDto packageDto = packageController.getPackage(packageName);
+
+            if (roomsDto != null) {                
+                Double roomRate = roomsDto.getRoomRate();
+                Double packageRate = packageDto.getPkgAmount();
+                
+                Double totalAmmount = roomRate + packageRate;
+                txtTotalAmount.setText(totalAmmount.toString());
+            } else {
+                JOptionPane.showMessageDialog(this, "Error in Total");                
+            }
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, "Error");
+            Logger.getLogger(ReservationsView.class.getName()).log(Level.SEVERE, null, ex);
+        }    
     }
 
 }
