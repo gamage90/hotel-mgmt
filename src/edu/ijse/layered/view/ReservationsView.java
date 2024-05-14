@@ -12,8 +12,10 @@ import edu.ijse.layered.dto.ReservationsDto;
 import edu.ijse.layered.dto.RoomsDto;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.Period;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -76,8 +78,6 @@ public class ReservationsView extends javax.swing.JFrame {
         btnCustomersView = new javax.swing.JButton();
         btnCatagoriesView = new javax.swing.JButton();
         btnRoomsView = new javax.swing.JButton();
-        btnDiff = new javax.swing.JButton();
-        lblDiff = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setName("Reservations"); // NOI18N
@@ -173,15 +173,6 @@ public class ReservationsView extends javax.swing.JFrame {
             }
         });
 
-        btnDiff.setText("jButton1");
-        btnDiff.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnDiffActionPerformed(evt);
-            }
-        });
-
-        lblDiff.setText("jLabel1");
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -213,20 +204,14 @@ public class ReservationsView extends javax.swing.JFrame {
                             .addComponent(txtCustID))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lblCustVal, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(lblRoomVal, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(59, 59, 59)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(btnRoomsView, javax.swing.GroupLayout.DEFAULT_SIZE, 108, Short.MAX_VALUE)
-                                    .addComponent(btnCustomersView, javax.swing.GroupLayout.DEFAULT_SIZE, 108, Short.MAX_VALUE)
-                                    .addComponent(btnNewReservationsView, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(btnCatagoriesView, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(btnDiff)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(lblDiff, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(lblCustVal, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblRoomVal, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(59, 59, 59)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(btnRoomsView, javax.swing.GroupLayout.DEFAULT_SIZE, 108, Short.MAX_VALUE)
+                            .addComponent(btnCustomersView, javax.swing.GroupLayout.DEFAULT_SIZE, 108, Short.MAX_VALUE)
+                            .addComponent(btnNewReservationsView, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnCatagoriesView, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(5, 5, 5))
                     .addComponent(jScrollPane1))
                 .addGap(8, 8, 8))
@@ -243,7 +228,7 @@ public class ReservationsView extends javax.swing.JFrame {
                 .addComponent(lblTitleRes, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(3, 3, 3)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 3, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblResID)
                     .addGroup(layout.createSequentialGroup()
@@ -272,9 +257,7 @@ public class ReservationsView extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(txtCheckOut, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(lblCheckOut)
-                                    .addComponent(btnDiff)
-                                    .addComponent(lblDiff))))
+                                    .addComponent(lblCheckOut))))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lblPkg)
@@ -335,11 +318,6 @@ public class ReservationsView extends javax.swing.JFrame {
         this.setVisible(false);
     }//GEN-LAST:event_btnRoomsViewActionPerformed
 
-    private void btnDiffActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDiffActionPerformed
-        //calDiff();
-    
-    }//GEN-LAST:event_btnDiffActionPerformed
-
     /**
      * @param args the command line arguments
      */
@@ -379,7 +357,6 @@ public class ReservationsView extends javax.swing.JFrame {
     private javax.swing.JButton btnCatagoriesView;
     private javax.swing.JButton btnCustomersView;
     private javax.swing.JButton btnDelete;
-    private javax.swing.JButton btnDiff;
     private javax.swing.JButton btnNewReservationsView;
     private javax.swing.JButton btnRoomsView;
     private javax.swing.JButton btnUpdate;
@@ -390,7 +367,6 @@ public class ReservationsView extends javax.swing.JFrame {
     private javax.swing.JLabel lblCheckOut;
     private javax.swing.JLabel lblCustID;
     private javax.swing.JLabel lblCustVal;
-    private javax.swing.JLabel lblDiff;
     private javax.swing.JLabel lblPkg;
     private javax.swing.JLabel lblResID;
     private javax.swing.JLabel lblRoomId;
@@ -503,12 +479,27 @@ public class ReservationsView extends javax.swing.JFrame {
     }
 
     private void deleteReservations() {
-        try {
+        try {            
             String reservationsID = txtResID.getText();
-            String resp = reservationsController.deleteReservations(reservationsID);
-            JOptionPane.showMessageDialog(this, resp);
-            loadReservations();
-            clear();
+
+            SimpleDateFormat obj = new SimpleDateFormat("yyyy-MM-dd");
+            String checkIN = txtCheckIn.getText();
+            String todayDate = obj.format(new Date());
+            Date date1 = obj.parse(checkIN);
+            Date date2 = obj.parse(todayDate); 
+
+            long time_difference = date1.getTime() - date2.getTime();
+            long hours_difference = (time_difference / (1000 * 60 * 60));
+
+            if (hours_difference > 24) {
+                String resp = reservationsController.deleteReservations(reservationsID);
+                JOptionPane.showMessageDialog(this, resp);
+                loadReservations();
+                clear();
+            }
+            else{
+            JOptionPane.showMessageDialog(this, "Cannot Delete Reservation. Reservations can be removed only before 24 hours");
+            }
         } catch (Exception ex) {
             Logger.getLogger(CustomerView.class.getName()).log(Level.SEVERE, null, ex);
             JOptionPane.showMessageDialog(this, ex.getMessage());
@@ -595,6 +586,24 @@ public class ReservationsView extends javax.swing.JFrame {
         this.setVisible(false);
     }
 
-    
+    private void calDiff() {
+        try {
+            SimpleDateFormat obj = new SimpleDateFormat("yyyy-MM-dd");
+            String checkIN = txtCheckIn.getText();
+            String todayDate = obj.format(new Date());
+            Date date1 = obj.parse(checkIN);
+            Date date2 = obj.parse(todayDate);
+
+            long time_difference = date1.getTime() - date2.getTime();
+            long hours_difference = (time_difference / (1000 * 60 * 60));
+
+            System.out.println(time_difference);
+            System.out.println(hours_difference);
+
+        } catch (ParseException ex) {
+            Logger.getLogger(ReservationsView.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
 
 }

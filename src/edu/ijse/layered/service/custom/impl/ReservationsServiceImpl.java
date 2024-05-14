@@ -15,7 +15,6 @@ import edu.ijse.layered.service.custom.ReservationsService;
 import java.util.ArrayList;
 import java.util.List;
 import java.sql.Connection;
-import javax.swing.JOptionPane;
 
 /**
  *
@@ -59,35 +58,26 @@ public class ReservationsServiceImpl implements ReservationsService {
                     reservationsDto.getResAmount());
 
             if (reservationsDao.add(reservationsEntity)) {
-                //return "Successfully Saved";
 
-                boolean isReservationSaved = true;
-                //if (!reservationsDao.add(reservationsEntity)) {
-                //     isReservationSaved = false;
-                // }
-
-                if (isReservationSaved) {
-                    boolean isReservationUpdated = true;
-
-                    RoomsEntity roomsEntity = roomsDao.get(reservationsDto.getRoomID().toString());
-                    String roomAvailableCheck = roomsEntity.getRoomAvailability().toString();
-                    if (roomsEntity != null) {                                             
-                        roomsEntity.setRoomAvailability(0);
-                        if (!roomsDao.update(roomsEntity)) {
-                            isReservationUpdated = false;
-                        }
+                RoomsEntity roomsEntity = roomsDao.get(reservationsDto.getRoomID().toString());
+                // String roomAvailableCheck = roomsEntity.getRoomAvailability().toString();
+                Integer roomAvailableCheck = roomsEntity.getRoomAvailability();
+                boolean isReservationUpdated = true;
+                if (roomsEntity != null && roomAvailableCheck == 1) {
+                    roomsEntity.setRoomAvailability(0);
+                    if (!roomsDao.update(roomsEntity)) {
+                        isReservationUpdated = false;
                     }
                     if (isReservationUpdated) {
                         connection.commit();
-                        return "Success";
+                        return "Successfully created reservation";
                     } else {
                         connection.rollback();
                         return "Error Updating Reservation";
                     }
-
                 } else {
                     connection.rollback();
-                    return "Error Creating Reservation";
+                    return "Room Update error. Please check room avaialability";
                 }
 
             } else {
@@ -125,12 +115,47 @@ public class ReservationsServiceImpl implements ReservationsService {
 
     @Override
     public String deleteReservations(String reservationsID) throws Exception {
-        if (reservationsDao.delete(reservationsID)) {
-            return "Successfully Deleted";
-        } else {
-            return "Fail";
-        }
 
+        Connection connection = DBConnection.getInstance().getConnection();
+
+        try {
+            connection.setAutoCommit(false);
+            ReservationsEntity entity = reservationsDao.get(reservationsID);
+            Integer roomID = entity.getRoomID();
+            RoomsEntity roomsEntity = roomsDao.get(roomID.toString());
+
+            if (reservationsDao.delete(reservationsID)) {
+                Integer roomAvailableCheck = roomsEntity.getRoomAvailability();
+                boolean isReservationDeleted = true;                
+                
+                if (roomsEntity != null && roomAvailableCheck == 0) {
+                    roomsEntity.setRoomAvailability(1);
+                    if (!roomsDao.update(roomsEntity)) {
+                        isReservationDeleted = false;
+                    }
+                    if (isReservationDeleted) {
+                        connection.commit();
+                        return "Successfully deleted reservation";
+                    } else {
+                        connection.rollback();
+                        return "Error Deleting Reservation";
+                    }
+                } else {
+                    connection.rollback();
+                    return "Reservation Delete error";
+                }                              
+                
+            } else {
+                return "Failed to delete reservation -> " + reservationsID;
+            }
+
+        } catch (Exception e) {
+            connection.rollback();
+            e.printStackTrace();
+            throw e;
+        } finally {
+            connection.setAutoCommit(true);
+        }
     }
 
     @Override
