@@ -12,6 +12,7 @@ import edu.ijse.layered.dto.CustomerDto;
 import edu.ijse.layered.dto.PackageDto;
 import edu.ijse.layered.dto.ReservationsDto;
 import edu.ijse.layered.dto.RoomsDto;
+import java.awt.Color;
 import java.awt.Toolkit;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -32,7 +33,6 @@ public class NewReservationsView extends javax.swing.JFrame {
     private RoomController roomsController;
     private PackageController packageController;
 
-    
     /**
      * Creates new form NewReservationsView
      */
@@ -111,10 +111,20 @@ public class NewReservationsView extends javax.swing.JFrame {
         lblRoomVal.setText("  ");
 
         comboPkg.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        comboPkg.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboPkgActionPerformed(evt);
+            }
+        });
 
         comboCustomer.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         comboRoom.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        comboRoom.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboRoomActionPerformed(evt);
+            }
+        });
 
         lblCheckIn.setText("Check-IN");
 
@@ -243,8 +253,8 @@ public class NewReservationsView extends javax.swing.JFrame {
                                 .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(lblCustVal, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(lblRoomVal, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(99, 99, 99))
+                                    .addComponent(lblRoomVal, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(26, 26, 26))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jDateCheckIn, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -370,6 +380,14 @@ public class NewReservationsView extends javax.swing.JFrame {
         calculateAmmount();
     }//GEN-LAST:event_btnCalculateActionPerformed
 
+    private void comboRoomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboRoomActionPerformed
+        totalAmountColour();
+    }//GEN-LAST:event_comboRoomActionPerformed
+
+    private void comboPkgActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboPkgActionPerformed
+        totalAmountColour();
+    }//GEN-LAST:event_comboPkgActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -490,12 +508,21 @@ public class NewReservationsView extends javax.swing.JFrame {
         reservationsDto.setResAmount(Double.parseDouble(txtTotalAmount.getText()));
 
         try {
-            String result = reservationsController.saveReservations(reservationsDto);
-            JOptionPane.showMessageDialog(this, result);
-            clear();
-            loadReservations();
-            new ReservationsView().setVisible(true);
-            this.setVisible(false);
+            Color rt = txtTotalAmount.getBackground();
+            String totalAmount = txtTotalAmount.getText();
+            
+            if (rt != Color.red && !(totalAmount.isEmpty())) {
+                String result = reservationsController.saveReservations(reservationsDto);
+                JOptionPane.showMessageDialog(this, result);
+                clear();
+                loadReservations();
+                new ReservationsView().setVisible(true);
+                this.setVisible(false);
+            }
+            else{
+                JOptionPane.showMessageDialog(this, "Calculate the ammount");
+            }
+
         } catch (Exception ex) {
             Logger.getLogger(ReservationsView.class.getName()).log(Level.SEVERE, null, ex);
             JOptionPane.showMessageDialog(this, ex.getMessage());
@@ -549,6 +576,7 @@ public class NewReservationsView extends javax.swing.JFrame {
             String roomId = (String) comboRoom.getSelectedItem();
             String roomAvailable;
             RoomsDto roomsDto = roomsController.getRoom(roomId);
+            String roomRate = "LKR " + roomsDto.getRoomRate();
 
             if (roomsDto != null) {
                 /////////////
@@ -558,7 +586,7 @@ public class NewReservationsView extends javax.swing.JFrame {
                     roomAvailable = "Unavailable";
                 }
                 ////////////                
-                lblRoomVal.setText(roomsDto.getRoomNumber() + " | " + roomAvailable);
+                lblRoomVal.setText(roomsDto.getRoomNumber() + " | " + roomAvailable + " | " + roomRate);
             } else {
                 JOptionPane.showMessageDialog(this, "Rooms Not Found");
                 lblRoomVal.setText("Invalid");
@@ -621,26 +649,31 @@ public class NewReservationsView extends javax.swing.JFrame {
     }
 
     private void calculateAmmount() {
-       try {
+        try {
             String roomId = (String) comboRoom.getSelectedItem();
             RoomsDto roomsDto = roomsController.getRoom(roomId);
-            
+
             String packageName = (String) comboPkg.getSelectedItem();
             PackageDto packageDto = packageController.getPackage(packageName);
 
-            if (roomsDto != null) {                
+            if (roomsDto != null) {
                 Double roomRate = roomsDto.getRoomRate();
                 Double packageRate = packageDto.getPkgAmount();
-                
+
                 Double totalAmmount = roomRate + packageRate;
                 txtTotalAmount.setText(totalAmmount.toString());
+                txtTotalAmount.setBackground(Color.white);
             } else {
-                JOptionPane.showMessageDialog(this, "Error in Total");                
+                JOptionPane.showMessageDialog(this, "Error in Total");
             }
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, "Error");
             Logger.getLogger(ReservationsView.class.getName()).log(Level.SEVERE, null, ex);
-        }    
+        }
+    }
+
+    private void totalAmountColour() {
+        txtTotalAmount.setBackground(Color.red);
     }
 
 }
