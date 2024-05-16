@@ -374,6 +374,7 @@ public class NewReservationsView extends javax.swing.JFrame {
 
     private void btnPkgViewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPkgViewActionPerformed
         new PackageView().setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_btnPkgViewActionPerformed
 
     private void btnCalculateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCalculateActionPerformed
