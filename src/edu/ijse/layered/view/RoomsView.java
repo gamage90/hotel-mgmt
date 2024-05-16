@@ -8,6 +8,7 @@ import edu.ijse.layered.controller.CategoryController;
 import edu.ijse.layered.controller.RoomController;
 import edu.ijse.layered.dto.CategoryDto;
 import edu.ijse.layered.dto.RoomsDto;
+import java.awt.*;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -22,7 +23,7 @@ public class RoomsView extends javax.swing.JFrame {
 
     private RoomController roomController;
     private CategoryController categoryController;
-    private static int flag_cat = 0 ;
+    private static int flag_cat = 0;
 
     /**
      * Creates new form RoomsView
@@ -31,6 +32,8 @@ public class RoomsView extends javax.swing.JFrame {
         roomController = new RoomController();
         categoryController = new CategoryController();
         initComponents();
+        this.setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/images/Icon2.png")));
+        this.setLocationRelativeTo(null);
         txtAV.setVisible(false);
         lblCatName.setVisible(false);
         loadRooms();
@@ -71,6 +74,7 @@ public class RoomsView extends javax.swing.JFrame {
         txtCategory = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Rooms Management");
 
         lblRate.setText("Rate");
 
@@ -218,14 +222,13 @@ public class RoomsView extends javax.swing.JFrame {
                                     .addComponent(lblCategory)
                                     .addComponent(lblCatName)
                                     .addComponent(txtCategory, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(28, 28, 28)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(28, 28, 28)
                                 .addComponent(lblRoomNum)
                                 .addGap(18, 18, 18)
                                 .addComponent(lblAvailable))
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(28, 28, 28)
                                 .addComponent(txtRoomNum, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -467,28 +470,28 @@ public class RoomsView extends javax.swing.JFrame {
 
         }
     }
-    
+
     private void loadLabelCategories() {
         try {
             // DefaultComboBoxModel dtm = new DefaultComboBoxModel();
             List<CategoryDto> categoryDtos = categoryController.getAll();
-            for (CategoryDto categoryDto : categoryDtos) {                
+            for (CategoryDto categoryDto : categoryDtos) {
                 Integer rowData = categoryDto.getCategoryID();
                 String rowName = categoryDto.getCategoryName();
-                lblCatName.setText(lblCatName.getText()+ Integer.toString(rowData)+ "-" + rowName + " | ");
+                lblCatName.setText(lblCatName.getText() + Integer.toString(rowData) + "-" + rowName + " | ");
                 txtCategory.setToolTipText(lblCatName.getText());
             }
-         
 
         } catch (Exception ex) {
             Logger.getLogger(RoomsView.class.getName()).log(Level.SEVERE, null, ex);
             JOptionPane.showMessageDialog(this, ex.getMessage());
         }
-        flag_cat = 1 ;
+        flag_cat = 1;
 
     }
 
- /*   private void loadComboCategories() {
+
+    /*   private void loadComboCategories() {
         comboCatagories.removeAllItems();
         try {
             // DefaultComboBoxModel dtm = new DefaultComboBoxModel();
@@ -507,8 +510,7 @@ public class RoomsView extends javax.swing.JFrame {
         flag_cat = 1 ;
 
     }*/
-    
-   /* private void changeLabelCategoryName(){
+ /* private void changeLabelCategoryName(){
         if(flag_cat==1){
         try {
             //String custId = txtCustID.getText();

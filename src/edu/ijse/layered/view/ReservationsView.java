@@ -10,6 +10,7 @@ import edu.ijse.layered.controller.RoomController;
 import edu.ijse.layered.dto.CustomerDto;
 import edu.ijse.layered.dto.ReservationsDto;
 import edu.ijse.layered.dto.RoomsDto;
+import java.awt.Toolkit;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.Period;
@@ -40,6 +41,8 @@ public class ReservationsView extends javax.swing.JFrame {
         customerController = new CustomerController();
         roomsController = new RoomController();
         initComponents();
+        this.setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/images/Icon2.png")));
+        this.setLocationRelativeTo(null);
         loadReservations();
     }
 
@@ -80,6 +83,7 @@ public class ReservationsView extends javax.swing.JFrame {
         btnRoomsView = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Manage Reservations");
         setName("Reservations"); // NOI18N
 
         lblCheckOut.setText("Check-OUT");
@@ -218,9 +222,9 @@ public class ReservationsView extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(243, 243, 243))
+                .addGap(210, 210, 210))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

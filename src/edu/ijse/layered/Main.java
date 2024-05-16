@@ -5,6 +5,7 @@
 package edu.ijse.layered;
 
 import edu.ijse.layered.view.CustomerView;
+import edu.ijse.layered.view.LoginView;
 import edu.ijse.layered.view.NewReservationsView;
 import edu.ijse.layered.view.PackageView;
 import edu.ijse.layered.view.ReservationsView;
@@ -22,8 +23,9 @@ public class Main {
         //new RoomCatagoriesView().setVisible(true);
        // new CustomerView().setVisible(true);
       // new RoomsView().setVisible(true);
-       new ReservationsView().setVisible(true);
+       //new ReservationsView().setVisible(true);
        //new NewReservationsView().setVisible(true);
      // new PackageView().setVisible(true);
+     new LoginView().setVisible(true);
     }
 }

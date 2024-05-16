@@ -6,6 +6,7 @@ package edu.ijse.layered.view;
 
 import edu.ijse.layered.controller.CategoryController;
 import edu.ijse.layered.dto.CategoryDto;
+import java.awt.Toolkit;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -26,6 +27,8 @@ public class RoomCatagoriesView extends javax.swing.JFrame {
     public RoomCatagoriesView() {
         categoryController = new CategoryController();
         initComponents();
+        this.setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/images/Icon2.png")));
+        this.setLocationRelativeTo(null);
         loadTable();
     }
 
@@ -53,6 +56,7 @@ public class RoomCatagoriesView extends javax.swing.JFrame {
         btnCustomersView = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Catagory Management");
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel1.setText("Room Catagories");

@@ -12,6 +12,7 @@ import edu.ijse.layered.dto.CustomerDto;
 import edu.ijse.layered.dto.PackageDto;
 import edu.ijse.layered.dto.ReservationsDto;
 import edu.ijse.layered.dto.RoomsDto;
+import java.awt.Toolkit;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -41,6 +42,8 @@ public class NewReservationsView extends javax.swing.JFrame {
         roomsController = new RoomController();
         packageController = new PackageController();
         initComponents();
+        this.setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/images/Icon2.png")));
+        this.setLocationRelativeTo(null);
         loadReservations();
         loadComboBox();
         loadComboCustomer();
@@ -78,7 +81,6 @@ public class NewReservationsView extends javax.swing.JFrame {
         tblReservatons = new javax.swing.JTable();
         lblAmmont = new javax.swing.JLabel();
         txtTotalAmount = new javax.swing.JTextField();
-        btnRefresh = new javax.swing.JButton();
         jDateCheckOut = new com.toedter.calendar.JDateChooser();
         jDateCheckIn = new com.toedter.calendar.JDateChooser();
         btnCustomerView = new javax.swing.JButton();
@@ -88,6 +90,7 @@ public class NewReservationsView extends javax.swing.JFrame {
         btnCalculate = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("New Reservations");
 
         btnValidateCust.setText("Validate");
         btnValidateCust.addActionListener(new java.awt.event.ActionListener() {
@@ -155,13 +158,6 @@ public class NewReservationsView extends javax.swing.JFrame {
         jScrollPane1.setViewportView(tblReservatons);
 
         lblAmmont.setText("Amount");
-
-        btnRefresh.setText("Refresh");
-        btnRefresh.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnRefreshActionPerformed(evt);
-            }
-        });
 
         jDateCheckOut.setDateFormatString("yyyy-MM-dd");
 
@@ -257,17 +253,18 @@ public class NewReservationsView extends javax.swing.JFrame {
                                         .addGap(34, 34, 34)
                                         .addComponent(btnCalculate)))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(btnRefresh, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btnCatagoryView, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btnRoomsView, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btnCustomerView, javax.swing.GroupLayout.DEFAULT_SIZE, 96, Short.MAX_VALUE)
-                                .addComponent(btnPkgView, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(btnCatagoryView, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnRoomsView, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnCustomerView, javax.swing.GroupLayout.DEFAULT_SIZE, 96, Short.MAX_VALUE)
+                            .addComponent(btnPkgView, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(14, 14, 14))
                     .addComponent(jScrollPane1))
                 .addGap(8, 8, 8))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(283, 283, 283)
+                .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -312,23 +309,19 @@ public class NewReservationsView extends javax.swing.JFrame {
                             .addComponent(jDateCheckOut, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(lblCheckOut))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblPkg)
-                            .addComponent(comboPkg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(6, 6, 6))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(btnRefresh)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblPkg)
+                    .addComponent(comboPkg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(13, 13, 13)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblAmmont)
                     .addComponent(txtTotalAmount, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnSave)
                     .addComponent(btnCalculate))
                 .addGap(11, 11, 11)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(46, 46, 46))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnSave)
+                .addGap(11, 11, 11))
         );
 
         pack();
@@ -349,10 +342,6 @@ public class NewReservationsView extends javax.swing.JFrame {
     private void tblReservatonsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblReservatonsMouseClicked
         searchReservations();
     }//GEN-LAST:event_tblReservatonsMouseClicked
-
-    private void btnRefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRefreshActionPerformed
-        refreshTable();
-    }//GEN-LAST:event_btnRefreshActionPerformed
 
     private void jDateCheckInPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jDateCheckInPropertyChange
         jDateCheckOut.getJCalendar().setMinSelectableDate(jDateCheckIn.getDate());
@@ -421,7 +410,6 @@ public class NewReservationsView extends javax.swing.JFrame {
     private javax.swing.JButton btnCatagoryView;
     private javax.swing.JButton btnCustomerView;
     private javax.swing.JButton btnPkgView;
-    private javax.swing.JButton btnRefresh;
     private javax.swing.JButton btnRoomsView;
     private javax.swing.JButton btnSave;
     private javax.swing.JButton btnValidateCust;

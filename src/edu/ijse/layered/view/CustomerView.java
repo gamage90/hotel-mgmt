@@ -6,6 +6,7 @@ package edu.ijse.layered.view;
 
 import edu.ijse.layered.controller.CustomerController;
 import edu.ijse.layered.dto.CustomerDto;
+import java.awt.Toolkit;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -26,6 +27,8 @@ public class CustomerView extends javax.swing.JFrame {
     public CustomerView() {
         customerController = new CustomerController();
         initComponents();
+        this.setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/images/Icon2.png")));
+        this.setLocationRelativeTo(null);
         loadCustomers();
     }
 
@@ -60,6 +63,7 @@ public class CustomerView extends javax.swing.JFrame {
         btnCatagoriesView = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Customer Management");
 
         btnSave.setText("SAVE");
         btnSave.addActionListener(new java.awt.event.ActionListener() {
@@ -172,7 +176,7 @@ public class CustomerView extends javax.swing.JFrame {
                                     .addComponent(brnRoomsView, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(btnReservationsView, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(139, 139, 139)
+                        .addGap(163, 163, 163)
                         .addComponent(btnDelete)
                         .addGap(18, 18, 18)
                         .addComponent(btnUpdate)
@@ -318,6 +322,7 @@ public class CustomerView extends javax.swing.JFrame {
     private javax.swing.JLabel zipLabel;
     // End of variables declaration//GEN-END:variables
 
+   
     private void clear() {
         txtID.setText("");
         txtName.setText("");

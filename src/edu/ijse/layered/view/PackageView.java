@@ -6,6 +6,7 @@ package edu.ijse.layered.view;
 
 import edu.ijse.layered.controller.PackageController;
 import edu.ijse.layered.dto.PackageDto;
+import java.awt.Toolkit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.List;
@@ -26,6 +27,8 @@ public class PackageView extends javax.swing.JFrame {
     public PackageView() {
         packageController = new PackageController();
         initComponents();
+        this.setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/images/Icon2.png")));
+        this.setLocationRelativeTo(null);
         loadTable();
     }
 
@@ -50,6 +53,7 @@ public class PackageView extends javax.swing.JFrame {
         tblPackages = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Package Management");
 
         btnReservationsView.setText("Reservations");
         btnReservationsView.addActionListener(new java.awt.event.ActionListener() {
